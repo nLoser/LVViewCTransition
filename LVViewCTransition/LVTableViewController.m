@@ -27,8 +27,10 @@
     self.tableView.tableHeaderView = self.tableHeader;
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     
-    self.automaticallyAdjustsScrollViewInsets = NO;
     self.view.backgroundColor = [UIColor whiteColor];
+    self.tableView.showsVerticalScrollIndicator = NO;
+    self.tableView.showsHorizontalScrollIndicator = NO;
+    self.automaticallyAdjustsScrollViewInsets = NO;
 }
 
 #pragma mark - Target Action

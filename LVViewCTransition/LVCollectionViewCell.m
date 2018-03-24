@@ -15,6 +15,7 @@
     self.backgroundColor = [UIColor orangeColor];
     self.layer.cornerRadius = 12.0;
     self.layer.masksToBounds = YES;
+    self.WrapperView.backgroundColor = [UIColor redColor];
 }
 
 @end

@@ -31,10 +31,10 @@
         CGRect finalFrameToVC = [transitionContext finalFrameForViewController:toVC];
         toVC.view.frame = fromVC.isPushFromFrame;
         
-        
         [[transitionContext containerView] addSubview:toVC.view];
         [toVC.tableHeader addSubview:fromVC.isPushReuseView];
-        
+        fromVC.isPushReuseView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.width * 1.2);
+#if 1
         [toVC.tableHeader addConstraints:@[[NSLayoutConstraint constraintWithItem:fromVC.isPushReuseView
                                                                         attribute:NSLayoutAttributeTop
                                                                         relatedBy:NSLayoutRelationEqual
@@ -64,7 +64,7 @@
                                                                        multiplier:1
                                                                          constant:0]
                                            ]];
-        
+#endif
         [UIView animateWithDuration:0.8
                               delay:0
              usingSpringWithDamping:0.54
@@ -113,8 +113,9 @@
                              bgAlphaView.alpha = 0;
                          }
                          completion:^(BOOL finished) {
+                             toVC.isPushReuseView.frame = toVC.isPushContainerView.bounds;
                              [toVC.isPushContainerView addSubview:toVC.isPushReuseView];
-                             
+#if 1
                              [toVC.isPushContainerView addConstraints:@[[NSLayoutConstraint constraintWithItem:toVC.isPushReuseView
                                                                                              attribute:NSLayoutAttributeTop
                                                                                              relatedBy:NSLayoutRelationEqual
@@ -144,10 +145,9 @@
                                                                                             multiplier:1
                                                                                               constant:0]
                                                                 ]];
-                             
+#endif
                              [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
-                             
-                             [UIView animateWithDuration:0.9
+                             [UIView animateWithDuration:0.7
                                                    delay:0.0
                                   usingSpringWithDamping:0.4
                                    initialSpringVelocity:0.1
