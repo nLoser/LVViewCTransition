@@ -10,6 +10,8 @@
 #import "LVCollectionViewCell.h"
 
 @interface ViewController : UIViewController
+@property (nonatomic, weak) UIView * isPushContainerView;
+@property (nonatomic, assign) CGRect isPushFromFrame;
 @property (nonatomic, strong) UIView * isPushReuseView;
 @end
 

@@ -60,7 +60,10 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     LVTableViewController * vc = [LVTableViewController new];
-    _isPushReuseView = ((LVCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath]).WrapperView;
+    LVCollectionViewCell * cell = (id)[collectionView cellForItemAtIndexPath:indexPath];
+    _isPushReuseView = cell.WrapperView;
+    _isPushFromFrame = [_collectionView convertRect:cell.frame toView:self.view];
+    _isPushContainerView = cell;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

@@ -26,6 +26,8 @@
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap)]];
     self.tableView.tableHeaderView = self.tableHeader;
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
 }
 
 - (void)dealloc {
