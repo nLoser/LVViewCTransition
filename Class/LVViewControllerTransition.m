@@ -23,8 +23,6 @@
     return 0.8;
 }
 
-
-// This method can only  be a nop if the transition is interactive and not a percentDriven interactive transition.
 - (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext {
     if (_isPush) {
         ViewController * fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
@@ -54,39 +52,50 @@
         LVTableViewController * fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
         ViewController * toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
         
+        [transitionContext containerView].backgroundColor = [UIColor greenColor];
+        
+        UIView * bgAlphaView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        bgAlphaView.backgroundColor = [UIColor redColor];
+        
+        NSLog(@"%@",[transitionContext containerView].subviews);
+        
+        [[transitionContext containerView] insertSubview:toVC.view belowSubview:[transitionContext containerView].subviews.firstObject];
+        [[transitionContext containerView] insertSubview:bgAlphaView aboveSubview:toVC.view];
+
+        bgAlphaView.alpha = 1;
         toVC.view.alpha = 0;
-        [transitionContext containerView].backgroundColor = [UIColor whiteColor];
-        [[transitionContext containerView] addSubview:toVC.view];
         
         fromVC.view.layer.cornerRadius = 1;
         fromVC.view.layer.masksToBounds = YES;
         
         CGRect isPushContainerOriginFrame = toVC.isPushContainerView.frame;
         CGRect isPushContainerSeekFrame = CGRectMake(isPushContainerOriginFrame.origin.x,
-                                                     isPushContainerOriginFrame.origin.y+5,
+                                                     isPushContainerOriginFrame.origin.y+10,
                                                      isPushContainerOriginFrame.size.width,
                                                      isPushContainerOriginFrame.size.height);
-        
-        [UIView animateWithDuration:0.4
+        [UIView animateWithDuration:0.3
                               delay:0.0
-             usingSpringWithDamping:0.0
-              initialSpringVelocity:0.0
                             options:UIViewAnimationOptionCurveLinear
                          animations:^{
                              toVC.isPushContainerView.frame = isPushContainerSeekFrame;
-                             fromVC.view.frame = isPushContainerSeekFrame;
+                             fromVC.view.frame = CGRectMake(toVC.isPushFromFrame.origin.x,
+                                                            toVC.isPushFromFrame.origin.y + 10,
+                                                            toVC.isPushFromFrame.size.width,
+                                                            toVC.isPushFromFrame.size.height);
                              fromVC.view.layer.cornerRadius = 8;
+                             
+                             toVC.view.alpha = 1;
+                             bgAlphaView.alpha = 0;
                          }
                          completion:^(BOOL finished) {
-                             [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
                              [toVC.isPushContainerView addSubview:toVC.isPushReuseView];
-                             toVC.view.alpha = 1;
+                             [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
                              
-                             [UIView animateWithDuration:0.8
+                             [UIView animateWithDuration:0.9
                                                    delay:0.0
-                                  usingSpringWithDamping:0.5
-                                   initialSpringVelocity:0.0
-                                                 options:UIViewAnimationOptionCurveEaseOut
+                                  usingSpringWithDamping:0.4
+                                   initialSpringVelocity:0.1
+                                                 options:UIViewAnimationOptionCurveEaseIn
                                               animations:^{
                                                   toVC.isPushContainerView.frame = isPushContainerOriginFrame;
                                               }
