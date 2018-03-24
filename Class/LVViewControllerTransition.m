@@ -31,15 +31,45 @@
         CGRect finalFrameToVC = [transitionContext finalFrameForViewController:toVC];
         toVC.view.frame = fromVC.isPushFromFrame;
         
+        
         [[transitionContext containerView] addSubview:toVC.view];
         [toVC.tableHeader addSubview:fromVC.isPushReuseView];
-        [fromVC.isPushReuseView needsUpdateConstraints];
+        
+        [toVC.tableHeader addConstraints:@[[NSLayoutConstraint constraintWithItem:fromVC.isPushReuseView
+                                                                        attribute:NSLayoutAttributeTop
+                                                                        relatedBy:NSLayoutRelationEqual
+                                                                           toItem:toVC.tableHeader
+                                                                        attribute:NSLayoutAttributeTop
+                                                                       multiplier:1
+                                                                         constant:0],
+                                           [NSLayoutConstraint constraintWithItem:fromVC.isPushReuseView
+                                                                        attribute:NSLayoutAttributeBottom
+                                                                        relatedBy:NSLayoutRelationEqual
+                                                                           toItem:toVC.tableHeader
+                                                                        attribute:NSLayoutAttributeBottom
+                                                                       multiplier:1
+                                                                         constant:0],
+                                           [NSLayoutConstraint constraintWithItem:fromVC.isPushReuseView
+                                                                        attribute:NSLayoutAttributeLeft
+                                                                        relatedBy:NSLayoutRelationEqual
+                                                                           toItem:toVC.tableHeader
+                                                                        attribute:NSLayoutAttributeLeft
+                                                                       multiplier:1
+                                                                         constant:0],
+                                           [NSLayoutConstraint constraintWithItem:fromVC.isPushReuseView
+                                                                        attribute:NSLayoutAttributeRight
+                                                                        relatedBy:NSLayoutRelationEqual
+                                                                           toItem:toVC.tableHeader
+                                                                        attribute:NSLayoutAttributeRight
+                                                                       multiplier:1
+                                                                         constant:0]
+                                           ]];
         
         [UIView animateWithDuration:0.8
-                              delay:0.0
-             usingSpringWithDamping:0.5
+                              delay:0
+             usingSpringWithDamping:0.54
               initialSpringVelocity:0.1
-                            options:UIViewAnimationOptionCurveEaseIn
+                            options:UIViewAnimationOptionCurveLinear
                          animations:^{
                              fromVC.view.alpha = 0.5;
                              toVC.view.frame = finalFrameToVC;
@@ -51,13 +81,8 @@
     }else {
         LVTableViewController * fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
         ViewController * toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-        
-        [transitionContext containerView].backgroundColor = [UIColor greenColor];
-        
         UIView * bgAlphaView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-        bgAlphaView.backgroundColor = [UIColor redColor];
-        
-        NSLog(@"%@",[transitionContext containerView].subviews);
+        bgAlphaView.backgroundColor = [UIColor whiteColor];
         
         [[transitionContext containerView] insertSubview:toVC.view belowSubview:[transitionContext containerView].subviews.firstObject];
         [[transitionContext containerView] insertSubview:bgAlphaView aboveSubview:toVC.view];
@@ -82,13 +107,44 @@
                                                             toVC.isPushFromFrame.origin.y + 10,
                                                             toVC.isPushFromFrame.size.width,
                                                             toVC.isPushFromFrame.size.height);
-                             fromVC.view.layer.cornerRadius = 8;
+                             fromVC.view.layer.cornerRadius = 12;
                              
                              toVC.view.alpha = 1;
                              bgAlphaView.alpha = 0;
                          }
                          completion:^(BOOL finished) {
                              [toVC.isPushContainerView addSubview:toVC.isPushReuseView];
+                             
+                             [toVC.isPushContainerView addConstraints:@[[NSLayoutConstraint constraintWithItem:toVC.isPushReuseView
+                                                                                             attribute:NSLayoutAttributeTop
+                                                                                             relatedBy:NSLayoutRelationEqual
+                                                                                                toItem:toVC.isPushContainerView
+                                                                                             attribute:NSLayoutAttributeTop
+                                                                                            multiplier:1
+                                                                                              constant:0],
+                                                                [NSLayoutConstraint constraintWithItem:toVC.isPushReuseView
+                                                                                             attribute:NSLayoutAttributeBottom
+                                                                                             relatedBy:NSLayoutRelationEqual
+                                                                                                toItem:toVC.isPushContainerView
+                                                                                             attribute:NSLayoutAttributeBottom
+                                                                                            multiplier:1
+                                                                                              constant:0],
+                                                                [NSLayoutConstraint constraintWithItem:toVC.isPushReuseView
+                                                                                             attribute:NSLayoutAttributeLeft
+                                                                                             relatedBy:NSLayoutRelationEqual
+                                                                                                toItem:toVC.isPushContainerView
+                                                                                             attribute:NSLayoutAttributeLeft
+                                                                                            multiplier:1
+                                                                                              constant:0],
+                                                                [NSLayoutConstraint constraintWithItem:toVC.isPushReuseView
+                                                                                             attribute:NSLayoutAttributeRight
+                                                                                             relatedBy:NSLayoutRelationEqual
+                                                                                                toItem:toVC.isPushContainerView
+                                                                                             attribute:NSLayoutAttributeRight
+                                                                                            multiplier:1
+                                                                                              constant:0]
+                                                                ]];
+                             
                              [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
                              
                              [UIView animateWithDuration:0.9

@@ -31,10 +31,6 @@
     self.view.backgroundColor = [UIColor whiteColor];
 }
 
-- (void)dealloc {
-    NSLog(@"LVTableViewController Dealloc");
-}
-
 #pragma mark - Target Action
 
 - (void)tap {
@@ -61,7 +57,6 @@
 - (UIView *)tableHeader {
     if (!_tableHeader) {
         _tableHeader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.width * 1.2)];
-        _tableHeader.backgroundColor = [UIColor purpleColor];
     }
     return _tableHeader;
 }

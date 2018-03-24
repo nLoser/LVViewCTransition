@@ -44,6 +44,7 @@
     
     _transition = [[LVViewControllerTransition alloc] init];
     self.navigationController.delegate = self;
+    self.automaticallyAdjustsScrollViewInsets = NO;
 }
 
 #pragma mark - <UINavigationControllerDelegate>
