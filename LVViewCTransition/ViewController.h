@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LVCollectionViewCell.h"
 
 @interface ViewController : UIViewController
-
-
+@property (nonatomic, strong) LVCollectionViewCell * isPushedSelectCell;
 @end
 

@@ -12,8 +12,8 @@
 
 -(void)awakeFromNib {
     [super awakeFromNib];
-    _bgImg.layer.cornerRadius = 8.0;
-    _bgImg.layer.masksToBounds = YES;
+    self.layer.cornerRadius = 8.0;
+    self.layer.masksToBounds = YES;
 }
 
 @end

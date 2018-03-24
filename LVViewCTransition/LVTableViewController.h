@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LVCollectionViewCell.h"
 
 @interface LVTableViewController : UITableViewController
-
+@property (nonatomic, strong) LVCollectionViewCell * tableHeader;
 @end

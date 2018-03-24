@@ -7,24 +7,23 @@
 //
 
 #import "ViewController.h"
-#import "LVCollectionViewCell.h"
 #import "LVTableViewController.h"
+#import "LVViewControllerTransition.h"
 
-@interface ViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout> {
+@interface ViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UINavigationControllerDelegate> {
     NSMutableArray * _dataArray;
     CGFloat _w;
     CGFloat _h;
 }
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (nonatomic, strong) LVViewControllerTransition * transition;
 @end
 
 @implementation ViewController
 
-- (instancetype)init {
-    if (self = [super init]) {
-//        [self.navigationController setNavigationBarHidden:YES];
-    }
-    return self;
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self.navigationController setNavigationBarHidden:YES];
 }
 
 - (void)viewDidLoad {
@@ -44,11 +43,26 @@
     [self.collectionView registerNib:[UINib nibWithNibName:@"LVCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:kCell];
 }
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    [self.navigationController pushViewController:[LVTableViewController new] animated:YES];
+#pragma mark - <UINavigationControllerDelegate>
+
+- (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController
+                                  animationControllerForOperation:(UINavigationControllerOperation)operation
+                                               fromViewController:(UIViewController *)fromVC
+                                                 toViewController:(UIViewController *)toVC {
+    _transition.isPush = (operation == UINavigationControllerOperationPush);
+    return _transition;
 }
 
-#pragma mark - <UICollectionDataSource>
+#pragma mark - <UICollectionViewDelegate>
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    LVTableViewController * vc = [LVTableViewController new];
+    _isPushedSelectCell = (id)[collectionView cellForItemAtIndexPath:indexPath];
+    vc.tableHeader = _isPushedSelectCell;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+#pragma mark - <UICollectionViwDataSource>
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     LVCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:kCell forIndexPath:indexPath];
