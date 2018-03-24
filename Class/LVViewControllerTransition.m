@@ -31,10 +31,14 @@
         ViewController * fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
         LVTableViewController * toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
         CGRect finalFrameToVC = [transitionContext finalFrameForViewController:toVC];
+        
+        [toVC.tableHeader addSubview:fromVC.isPushReuseView];
     }else {
         LVTableViewController * fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
         ViewController * toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
         CGRect finalFrameToVC = [transitionContext finalFrameForViewController:toVC];
+        
+        [fromVC.tableHeader removeFromSuperview];
     }
 }
 

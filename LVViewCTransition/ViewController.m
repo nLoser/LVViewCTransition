@@ -41,6 +41,9 @@
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     [self.collectionView registerNib:[UINib nibWithNibName:@"LVCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:kCell];
+    
+    _transition = [[LVViewControllerTransition alloc] init];
+    self.navigationController.delegate = self;
 }
 
 #pragma mark - <UINavigationControllerDelegate>
@@ -58,7 +61,6 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     LVTableViewController * vc = [LVTableViewController new];
     _isPushReuseView = ((LVCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath]).WrapperView;
-    vc.tableHeader = _isPushReuseView;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
