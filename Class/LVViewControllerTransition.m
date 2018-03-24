@@ -54,27 +54,43 @@
         LVTableViewController * fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
         ViewController * toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
         
-        CGRect finalFrameToVC = [transitionContext finalFrameForViewController:toVC];
-        
         toVC.view.alpha = 0;
+        [transitionContext containerView].backgroundColor = [UIColor whiteColor];
         [[transitionContext containerView] addSubview:toVC.view];
         
         fromVC.view.layer.cornerRadius = 1;
         fromVC.view.layer.masksToBounds = YES;
         
-        [UIView animateWithDuration:0.5
+        CGRect isPushContainerOriginFrame = toVC.isPushContainerView.frame;
+        CGRect isPushContainerSeekFrame = CGRectMake(isPushContainerOriginFrame.origin.x,
+                                                     isPushContainerOriginFrame.origin.y+5,
+                                                     isPushContainerOriginFrame.size.width,
+                                                     isPushContainerOriginFrame.size.height);
+        
+        [UIView animateWithDuration:0.4
                               delay:0.0
-             usingSpringWithDamping:0.5
-              initialSpringVelocity:0.1
-                            options:UIViewAnimationOptionCurveEaseOut
+             usingSpringWithDamping:0.0
+              initialSpringVelocity:0.0
+                            options:UIViewAnimationOptionCurveLinear
                          animations:^{
+                             toVC.isPushContainerView.frame = isPushContainerSeekFrame;
+                             fromVC.view.frame = isPushContainerSeekFrame;
                              fromVC.view.layer.cornerRadius = 8;
-                             fromVC.view.frame = toVC.isPushFromFrame;
                          }
                          completion:^(BOOL finished) {
                              [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
-                             toVC.view.alpha = 1;
                              [toVC.isPushContainerView addSubview:toVC.isPushReuseView];
+                             toVC.view.alpha = 1;
+                             
+                             [UIView animateWithDuration:0.8
+                                                   delay:0.0
+                                  usingSpringWithDamping:0.5
+                                   initialSpringVelocity:0.0
+                                                 options:UIViewAnimationOptionCurveEaseOut
+                                              animations:^{
+                                                  toVC.isPushContainerView.frame = isPushContainerOriginFrame;
+                                              }
+                                              completion:nil];
                          }];
         
         

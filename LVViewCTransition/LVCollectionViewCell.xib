@@ -31,7 +31,7 @@
                             <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="救人比杀敌更重要" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="QQ0-tH-Q9S" userLabel="c副标题">
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" text="救人比杀敌更重要" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="QQ0-tH-Q9S" userLabel="c副标题">
                             <rect key="frame" x="20" y="43" width="306" height="93"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="93" id="vpk-ab-7Sv"/>
@@ -40,7 +40,7 @@
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="在《JYDGE》里，做一位保护市民的机械特警" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="q3R-ey-LZp" userLabel="c内容">
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" text="在《JYDGE》里，做一位保护市民的机械特警" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="q3R-ey-LZp" userLabel="c内容">
                             <rect key="frame" x="20" y="602" width="335" height="50"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="yPc-yt-xo6"/>
