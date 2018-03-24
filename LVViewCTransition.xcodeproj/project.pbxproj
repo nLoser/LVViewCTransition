@@ -47,6 +47,7 @@
 		A926CD7620660FC800892AD6 = {
 			isa = PBXGroup;
 			children = (
+				A926CD9F2066257B00892AD6 /* Class */,
 				A926CD8120660FC800892AD6 /* LVViewCTransition */,
 				A926CD8020660FC800892AD6 /* Products */,
 			);
@@ -77,6 +78,13 @@
 				A926CD9D2066217100892AD6 /* Assets.xcassets */,
 			);
 			path = LVViewCTransition;
+			sourceTree = "<group>";
+		};
+		A926CD9F2066257B00892AD6 /* Class */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Class;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

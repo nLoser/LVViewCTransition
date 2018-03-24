@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "LVCollectionViewCell.h"
 
-@interface ViewController ()<UICollectionViewDelegate,UICollectionViewDataSource> {
+@interface ViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout> {
     NSMutableArray * _dataArray;
     CGFloat _w;
     CGFloat _h;
@@ -47,8 +47,7 @@
     return _dataArray.count;
 }
 
-//UICollectionViewCell的大小
--(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     return CGSizeMake(_w, _h);
 }
 

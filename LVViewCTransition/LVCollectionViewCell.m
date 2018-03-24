@@ -10,13 +10,10 @@
 
 @implementation LVCollectionViewCell
 
-- (instancetype)initWithCoder:(NSCoder *)coder
-{
-    self = [super initWithCoder:coder];
-    if (self) {
-        
-    }
-    return self;
+-(void)awakeFromNib {
+    [super awakeFromNib];
+    _bgImg.layer.cornerRadius = 8.0;
+    _bgImg.layer.masksToBounds = YES;
 }
 
 @end
