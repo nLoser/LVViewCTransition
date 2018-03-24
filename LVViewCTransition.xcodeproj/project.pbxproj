@@ -70,12 +70,12 @@
 		A926CD8120660FC800892AD6 /* LVViewCTransition */ = {
 			isa = PBXGroup;
 			children = (
+				A926CD9A2066120300892AD6 /* LVCollectionViewCell.h */,
+				A926CD9B2066120300892AD6 /* LVCollectionViewCell.m */,
 				A926CD8220660FC800892AD6 /* AppDelegate.h */,
 				A926CD8320660FC800892AD6 /* AppDelegate.m */,
 				A926CD8520660FC800892AD6 /* ViewController.h */,
 				A926CD8620660FC800892AD6 /* ViewController.m */,
-				A926CD9A2066120300892AD6 /* LVCollectionViewCell.h */,
-				A926CD9B2066120300892AD6 /* LVCollectionViewCell.m */,
 				A926CDA02066371E00892AD6 /* LVTableViewController.h */,
 				A926CDA12066371E00892AD6 /* LVTableViewController.m */,
 				A926CD8820660FC800892AD6 /* Main.storyboard */,

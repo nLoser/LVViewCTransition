@@ -91,8 +91,10 @@
                 <constraint firstAttribute="bottom" secondItem="wIi-ee-CGu" secondAttribute="bottom" id="ym0-SA-Sc9"/>
             </constraints>
             <connections>
+                <outlet property="WrapperView" destination="wIi-ee-CGu" id="Xvf-Qf-dUN"/>
                 <outlet property="bgImg" destination="xKf-tB-VPY" id="kF8-EK-SQm"/>
                 <outlet property="content" destination="q3R-ey-LZp" id="8ef-Hy-xyp"/>
+                <outlet property="subTitle" destination="QQ0-tH-Q9S" id="Ywg-ad-kVI"/>
                 <outlet property="title" destination="OF0-Ga-bve" id="AIp-0V-tQs"/>
             </connections>
             <point key="canvasLocation" x="-198.5" y="304.5"/>

@@ -12,6 +12,7 @@
 
 -(void)awakeFromNib {
     [super awakeFromNib];
+    self.backgroundColor = [UIColor orangeColor];
     self.layer.cornerRadius = 8.0;
     self.layer.masksToBounds = YES;
 }

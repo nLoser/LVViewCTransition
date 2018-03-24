@@ -10,6 +10,6 @@
 #import "LVCollectionViewCell.h"
 
 @interface ViewController : UIViewController
-@property (nonatomic, strong) LVCollectionViewCell * isPushedSelectCell;
+@property (nonatomic, strong) UIView * isPushReuseView;
 @end
 
