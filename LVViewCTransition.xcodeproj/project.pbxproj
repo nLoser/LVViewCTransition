@@ -17,6 +17,7 @@
 		A926CD9E2066217100892AD6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A926CD9D2066217100892AD6 /* Assets.xcassets */; };
 		A926CDA22066371E00892AD6 /* LVTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A926CDA12066371E00892AD6 /* LVTableViewController.m */; };
 		A926CDA5206639BC00892AD6 /* LVViewControllerTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = A926CDA4206639BC00892AD6 /* LVViewControllerTransition.m */; };
+		A926CDA72066A9EB00892AD6 /* transition1.gif in Resources */ = {isa = PBXBuildFile; fileRef = A926CDA62066A9EA00892AD6 /* transition1.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		A926CDA12066371E00892AD6 /* LVTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LVTableViewController.m; sourceTree = "<group>"; };
 		A926CDA3206639BC00892AD6 /* LVViewControllerTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LVViewControllerTransition.h; sourceTree = "<group>"; };
 		A926CDA4206639BC00892AD6 /* LVViewControllerTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LVViewControllerTransition.m; sourceTree = "<group>"; };
+		A926CDA62066A9EA00892AD6 /* transition1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = transition1.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 		A926CD8120660FC800892AD6 /* LVViewCTransition */ = {
 			isa = PBXGroup;
 			children = (
+				A926CDA62066A9EA00892AD6 /* transition1.gif */,
 				A926CD9A2066120300892AD6 /* LVCollectionViewCell.h */,
 				A926CD9B2066120300892AD6 /* LVCollectionViewCell.m */,
 				A926CD8220660FC800892AD6 /* AppDelegate.h */,
@@ -158,6 +161,7 @@
 				A926CD8F20660FC800892AD6 /* LaunchScreen.storyboard in Resources */,
 				A926CD992066119E00892AD6 /* LVCollectionViewCell.xib in Resources */,
 				A926CD9E2066217100892AD6 /* Assets.xcassets in Resources */,
+				A926CDA72066A9EB00892AD6 /* transition1.gif in Resources */,
 				A926CD8A20660FC800892AD6 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
