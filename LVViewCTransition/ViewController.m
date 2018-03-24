@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "LVCollectionViewCell.h"
+#import "LVTableViewController.h"
 
 @interface ViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout> {
     NSMutableArray * _dataArray;
@@ -18,6 +19,13 @@
 @end
 
 @implementation ViewController
+
+- (instancetype)init {
+    if (self = [super init]) {
+//        [self.navigationController setNavigationBarHidden:YES];
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -36,7 +44,11 @@
     [self.collectionView registerNib:[UINib nibWithNibName:@"LVCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:kCell];
 }
 
-#pragma mark - <UICollectionDelegate>
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    [self.navigationController pushViewController:[LVTableViewController new] animated:YES];
+}
+
+#pragma mark - <UICollectionDataSource>
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     LVCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:kCell forIndexPath:indexPath];

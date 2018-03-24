@@ -23,38 +23,52 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="zqA-V7-nDp"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="救人比杀敌更重要" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xyj-ce-p9K" userLabel="c副标题">
-                    <rect key="frame" x="20" y="43" width="335" height="27"/>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="救人比杀敌更重要" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="QQ0-tH-Q9S" userLabel="c副标题">
+                    <rect key="frame" x="20" y="43" width="306" height="93"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="27" id="Ys2-IC-Kxm"/>
+                        <constraint firstAttribute="height" constant="93" id="D0A-e3-YNO"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                     <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="在《JYDGE》里，做一位保护市民的机械特警" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="q3R-ey-LZp" userLabel="c内容">
                     <rect key="frame" x="20" y="602" width="335" height="50"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="yPc-yt-xo6"/>
                     </constraints>
                     <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DeU-vx-0C6" userLabel="c关闭按钮">
+                    <rect key="frame" x="329" y="20" width="30" height="30"/>
+                    <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="787-I4-BG4"/>
+                        <constraint firstAttribute="width" constant="30" id="Zkl-WI-6Ih"/>
+                    </constraints>
+                    <state key="normal" title="X">
+                        <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
             </subviews>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="xKf-tB-VPY" secondAttribute="bottom" id="3eX-lG-kuA"/>
                 <constraint firstAttribute="bottom" secondItem="q3R-ey-LZp" secondAttribute="bottom" constant="15" id="5f9-oj-Kbg"/>
                 <constraint firstItem="q3R-ey-LZp" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="6p2-XU-qLZ"/>
-                <constraint firstItem="Xyj-ce-p9K" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="7X4-pj-8ci"/>
                 <constraint firstAttribute="trailing" secondItem="OF0-Ga-bve" secondAttribute="trailing" constant="20" id="7qz-wW-YE0"/>
+                <constraint firstAttribute="trailing" secondItem="QQ0-tH-Q9S" secondAttribute="trailing" constant="49" id="Dd7-Kt-pLw"/>
+                <constraint firstAttribute="trailing" secondItem="DeU-vx-0C6" secondAttribute="trailing" constant="16" id="JjF-kW-hml"/>
                 <constraint firstItem="OF0-Ga-bve" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="Kxh-LE-yXu"/>
-                <constraint firstItem="Xyj-ce-p9K" firstAttribute="top" secondItem="OF0-Ga-bve" secondAttribute="bottom" constant="8" id="Y8P-HD-U1c"/>
-                <constraint firstAttribute="trailing" secondItem="Xyj-ce-p9K" secondAttribute="trailing" constant="20" id="Z7b-ST-Om4"/>
+                <constraint firstItem="QQ0-tH-Q9S" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="L5l-6c-ltv"/>
+                <constraint firstItem="DeU-vx-0C6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="OBh-Uv-RjR"/>
+                <constraint firstItem="QQ0-tH-Q9S" firstAttribute="top" secondItem="OF0-Ga-bve" secondAttribute="bottom" constant="8" id="hnB-gD-sM9"/>
                 <constraint firstItem="xKf-tB-VPY" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="if2-Ec-jFI"/>
                 <constraint firstAttribute="trailing" secondItem="xKf-tB-VPY" secondAttribute="trailing" id="nBR-go-DYG"/>
                 <constraint firstItem="xKf-tB-VPY" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="uhe-PF-kI9"/>
@@ -64,10 +78,9 @@
             <connections>
                 <outlet property="bgImg" destination="xKf-tB-VPY" id="kF8-EK-SQm"/>
                 <outlet property="content" destination="q3R-ey-LZp" id="8ef-Hy-xyp"/>
-                <outlet property="subTitle" destination="Xyj-ce-p9K" id="M5u-Wn-d2I"/>
                 <outlet property="title" destination="OF0-Ga-bve" id="AIp-0V-tQs"/>
             </connections>
-            <point key="canvasLocation" x="-198" y="305"/>
+            <point key="canvasLocation" x="-198.5" y="304.5"/>
         </view>
     </objects>
     <resources>

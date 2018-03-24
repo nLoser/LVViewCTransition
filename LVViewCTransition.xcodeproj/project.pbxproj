@@ -15,6 +15,7 @@
 		A926CD992066119E00892AD6 /* LVCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A926CD982066119E00892AD6 /* LVCollectionViewCell.xib */; };
 		A926CD9C2066120300892AD6 /* LVCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A926CD9B2066120300892AD6 /* LVCollectionViewCell.m */; };
 		A926CD9E2066217100892AD6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A926CD9D2066217100892AD6 /* Assets.xcassets */; };
+		A926CDA22066371E00892AD6 /* LVTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A926CDA12066371E00892AD6 /* LVTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,8 @@
 		A926CD9A2066120300892AD6 /* LVCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LVCollectionViewCell.h; sourceTree = "<group>"; };
 		A926CD9B2066120300892AD6 /* LVCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LVCollectionViewCell.m; sourceTree = "<group>"; };
 		A926CD9D2066217100892AD6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A926CDA02066371E00892AD6 /* LVTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LVTableViewController.h; sourceTree = "<group>"; };
+		A926CDA12066371E00892AD6 /* LVTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LVTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +73,8 @@
 				A926CD8620660FC800892AD6 /* ViewController.m */,
 				A926CD9A2066120300892AD6 /* LVCollectionViewCell.h */,
 				A926CD9B2066120300892AD6 /* LVCollectionViewCell.m */,
+				A926CDA02066371E00892AD6 /* LVTableViewController.h */,
+				A926CDA12066371E00892AD6 /* LVTableViewController.m */,
 				A926CD8820660FC800892AD6 /* Main.storyboard */,
 				A926CD982066119E00892AD6 /* LVCollectionViewCell.xib */,
 				A926CD8D20660FC800892AD6 /* LaunchScreen.storyboard */,
@@ -163,6 +168,7 @@
 				A926CD9220660FC800892AD6 /* main.m in Sources */,
 				A926CD9C2066120300892AD6 /* LVCollectionViewCell.m in Sources */,
 				A926CD8420660FC800892AD6 /* AppDelegate.m in Sources */,
+				A926CDA22066371E00892AD6 /* LVTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
