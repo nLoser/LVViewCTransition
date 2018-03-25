@@ -62,48 +62,12 @@
     return _tableHeader;
 }
 
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    NSLog(@"1.%f",scrollView.contentOffset.y);
-    if (scrollView.contentOffset.y <= 0) {
-        scrollView.bounces = NO;
-    }else {
-        scrollView.bounces = YES;
-    }
-}
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    NSLog(@"2.%f",scrollView.contentOffset.y);
-    if (scrollView.contentOffset.y <= 0) {
-        scrollView.bounces = NO;
-    }else {
-        scrollView.bounces = YES;
-    }
-}
-
-- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
-    NSLog(@"[2].%f",scrollView.contentOffset.y);
-    if (scrollView.contentOffset.y <= 0) {
-        scrollView.bounces = NO;
-    }else {
-        scrollView.bounces = YES;
-    }
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    NSLog(@"3.%f",scrollView.contentOffset.y);
-    if (scrollView.contentOffset.y <= 0) {
-        scrollView.bounces = NO;
-    }else {
-        scrollView.bounces = YES;
-    }
-}
+#pragma mark - <UIScrollViewDelegate>
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    NSLog(@"4.%f",scrollView.contentOffset.y);
+    NSLog(@"%f",scrollView.contentOffset.y);
     if (scrollView.contentOffset.y <= 0) {
-        scrollView.bounces = NO;
-    }else {
-        scrollView.bounces = YES;
+        scrollView.contentOffset = CGPointZero;
     }
 }
 
