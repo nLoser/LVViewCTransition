@@ -8,7 +8,9 @@
 
 #import "ViewController.h"
 #import "LVTableViewController.h"
+
 #import "LVViewControllerTransition.h"
+#import "LVCardPopInteractiveTransition.h"
 
 @interface ViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UINavigationControllerDelegate> {
     NSMutableArray * _dataArray;
@@ -17,6 +19,7 @@
 }
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) LVViewControllerTransition * transition;
+@property (nonatomic, strong) LVCardPopInteractiveTransition * popInteractiveTransition;
 @end
 
 @implementation ViewController
@@ -43,6 +46,8 @@
     [self.collectionView registerNib:[UINib nibWithNibName:@"LVCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:kCell];
     
     _transition = [[LVViewControllerTransition alloc] init];
+    _popInteractiveTransition = [[LVCardPopInteractiveTransition alloc] init];
+    
     self.navigationController.delegate = self;
     self.automaticallyAdjustsScrollViewInsets = NO;
 }
@@ -57,14 +62,22 @@
     return _transition;
 }
 
+- (id<UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController
+                         interactionControllerForAnimationController:(id<UIViewControllerAnimatedTransitioning>)animationController {
+    return _popInteractiveTransition.isTransition?_popInteractiveTransition:nil;
+}
+
 #pragma mark - <UICollectionViewDelegate>
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     LVTableViewController * vc = [LVTableViewController new];
     LVCollectionViewCell * cell = (id)[collectionView cellForItemAtIndexPath:indexPath];
+    
     _isPushReuseView = cell.WrapperView;
     _isPushFromFrame = [_collectionView convertRect:cell.frame toView:self.view];
     _isPushContainerView = cell;
+    [_popInteractiveTransition writeToViewController:vc];
+    
     [self.navigationController pushViewController:vc animated:YES];
 }
 

@@ -33,6 +33,14 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
 }
 
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    
+    if ([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]) {
+        return YES;
+    }
+    return YES;
+}
+
 #pragma mark - Target Action
 
 - (void)tap {
@@ -65,7 +73,6 @@
 #pragma mark - <UIScrollViewDelegate>
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    NSLog(@"%f",scrollView.contentOffset.y);
     if (scrollView.contentOffset.y <= 0) {
         scrollView.contentOffset = CGPointZero;
     }

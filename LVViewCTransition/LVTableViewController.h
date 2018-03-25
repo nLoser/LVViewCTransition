@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LVTableViewController : UITableViewController
+@interface LVTableViewController : UITableViewController<UIGestureRecognizerDelegate>
 @property (nonatomic, strong) UIView * tableHeader;
 @end

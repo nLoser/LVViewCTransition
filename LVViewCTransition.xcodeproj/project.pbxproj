@@ -18,6 +18,7 @@
 		A926CDA22066371E00892AD6 /* LVTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A926CDA12066371E00892AD6 /* LVTableViewController.m */; };
 		A926CDA5206639BC00892AD6 /* LVViewControllerTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = A926CDA4206639BC00892AD6 /* LVViewControllerTransition.m */; };
 		A926CDA72066A9EB00892AD6 /* transition1.gif in Resources */ = {isa = PBXBuildFile; fileRef = A926CDA62066A9EA00892AD6 /* transition1.gif */; };
+		A95E3CA220678B200088D54C /* LVCardPopInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = A95E3CA120678B200088D54C /* LVCardPopInteractiveTransition.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,8 @@
 		A926CDA3206639BC00892AD6 /* LVViewControllerTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LVViewControllerTransition.h; sourceTree = "<group>"; };
 		A926CDA4206639BC00892AD6 /* LVViewControllerTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LVViewControllerTransition.m; sourceTree = "<group>"; };
 		A926CDA62066A9EA00892AD6 /* transition1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = transition1.gif; sourceTree = "<group>"; };
+		A95E3CA020678B200088D54C /* LVCardPopInteractiveTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LVCardPopInteractiveTransition.h; sourceTree = "<group>"; };
+		A95E3CA120678B200088D54C /* LVCardPopInteractiveTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LVCardPopInteractiveTransition.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +99,8 @@
 			children = (
 				A926CDA3206639BC00892AD6 /* LVViewControllerTransition.h */,
 				A926CDA4206639BC00892AD6 /* LVViewControllerTransition.m */,
+				A95E3CA020678B200088D54C /* LVCardPopInteractiveTransition.h */,
+				A95E3CA120678B200088D54C /* LVCardPopInteractiveTransition.m */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -178,6 +183,7 @@
 				A926CD9C2066120300892AD6 /* LVCollectionViewCell.m in Sources */,
 				A926CD8420660FC800892AD6 /* AppDelegate.m in Sources */,
 				A926CDA22066371E00892AD6 /* LVTableViewController.m in Sources */,
+				A95E3CA220678B200088D54C /* LVCardPopInteractiveTransition.m in Sources */,
 				A926CDA5206639BC00892AD6 /* LVViewControllerTransition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
