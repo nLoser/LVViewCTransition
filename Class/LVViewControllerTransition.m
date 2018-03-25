@@ -33,20 +33,21 @@
         
         [[transitionContext containerView] addSubview:toVC.view];
         [toVC.tableHeader addSubview:fromVC.isPushReuseView];
-        fromVC.isPushReuseView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.width * 1.2);
+        
+        toVC.tableHeader.backgroundColor = [UIColor purpleColor];
 #if 1
         [toVC.tableHeader addConstraints:@[[NSLayoutConstraint constraintWithItem:fromVC.isPushReuseView
-                                                                        attribute:NSLayoutAttributeTop
+                                                                        attribute:NSLayoutAttributeBottom
                                                                         relatedBy:NSLayoutRelationEqual
                                                                            toItem:toVC.tableHeader
-                                                                        attribute:NSLayoutAttributeTop
+                                                                        attribute:NSLayoutAttributeBottom
                                                                        multiplier:1
                                                                          constant:0],
                                            [NSLayoutConstraint constraintWithItem:fromVC.isPushReuseView
-                                                                        attribute:NSLayoutAttributeBottom
+                                                                        attribute:NSLayoutAttributeTop
                                                                         relatedBy:NSLayoutRelationEqual
                                                                            toItem:toVC.tableHeader
-                                                                        attribute:NSLayoutAttributeBottom
+                                                                        attribute:NSLayoutAttributeTop
                                                                        multiplier:1
                                                                          constant:0],
                                            [NSLayoutConstraint constraintWithItem:fromVC.isPushReuseView
@@ -102,18 +103,22 @@
                               delay:0.0
                             options:UIViewAnimationOptionCurveLinear
                          animations:^{
+                             
                              toVC.isPushContainerView.frame = isPushContainerSeekFrame;
+                             
                              fromVC.view.frame = CGRectMake(toVC.isPushFromFrame.origin.x,
                                                             toVC.isPushFromFrame.origin.y + 10,
                                                             toVC.isPushFromFrame.size.width,
                                                             toVC.isPushFromFrame.size.height);
+                             
                              fromVC.view.layer.cornerRadius = 12;
                              
                              toVC.view.alpha = 1;
                              bgAlphaView.alpha = 0;
                          }
                          completion:^(BOOL finished) {
-                             toVC.isPushReuseView.frame = toVC.isPushContainerView.bounds;
+                             [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
+                             
                              [toVC.isPushContainerView addSubview:toVC.isPushReuseView];
 #if 1
                              [toVC.isPushContainerView addConstraints:@[[NSLayoutConstraint constraintWithItem:toVC.isPushReuseView
@@ -146,7 +151,6 @@
                                                                                               constant:0]
                                                                 ]];
 #endif
-                             [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
                              [UIView animateWithDuration:0.7
                                                    delay:0.0
                                   usingSpringWithDamping:0.4

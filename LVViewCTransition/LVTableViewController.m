@@ -49,7 +49,6 @@
     return 1;
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     cell.textLabel.text = [NSString stringWithFormat:@"内容%ld",(long)indexPath.row];
@@ -61,6 +60,51 @@
         _tableHeader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.width * 1.2)];
     }
     return _tableHeader;
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    NSLog(@"1.%f",scrollView.contentOffset.y);
+    if (scrollView.contentOffset.y <= 0) {
+        scrollView.bounces = NO;
+    }else {
+        scrollView.bounces = YES;
+    }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    NSLog(@"2.%f",scrollView.contentOffset.y);
+    if (scrollView.contentOffset.y <= 0) {
+        scrollView.bounces = NO;
+    }else {
+        scrollView.bounces = YES;
+    }
+}
+
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
+    NSLog(@"[2].%f",scrollView.contentOffset.y);
+    if (scrollView.contentOffset.y <= 0) {
+        scrollView.bounces = NO;
+    }else {
+        scrollView.bounces = YES;
+    }
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    NSLog(@"3.%f",scrollView.contentOffset.y);
+    if (scrollView.contentOffset.y <= 0) {
+        scrollView.bounces = NO;
+    }else {
+        scrollView.bounces = YES;
+    }
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    NSLog(@"4.%f",scrollView.contentOffset.y);
+    if (scrollView.contentOffset.y <= 0) {
+        scrollView.bounces = NO;
+    }else {
+        scrollView.bounces = YES;
+    }
 }
 
 /*
