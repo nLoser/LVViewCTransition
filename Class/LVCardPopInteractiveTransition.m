@@ -33,10 +33,12 @@
     
     if (pan.state == UIGestureRecognizerStateBegan) {
         _isTransition = YES;
-        
     }else if (pan.state == UIGestureRecognizerStateChanged) {
+        CGFloat progress = MIN(1.0, MAX(0.0, translation.y/65.0));
         
-        CGFloat progress = MIN(1.0, MAX(0.0, translation.y/10.0));
+        CGFloat scaleX = ([UIScreen mainScreen].bounds.size.width - MIN(65, translation.y)) / [UIScreen mainScreen].bounds.size.width;
+        _toVC.view.transform = CGAffineTransformMakeScale(scaleX, scaleX);
+        
         NSLog(@"%f - %f",progress,translation.y);
         
         [self updateInteractiveTransition:progress];
