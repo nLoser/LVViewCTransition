@@ -10,4 +10,5 @@
 
 @interface LVTableViewController : UITableViewController<UIGestureRecognizerDelegate>
 @property (nonatomic, strong) UIView * tableHeader;
+@property (nonatomic, strong) UIButton * closeBtn;
 @end

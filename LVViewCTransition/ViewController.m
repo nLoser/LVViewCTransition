@@ -50,6 +50,7 @@
     
     self.navigationController.delegate = self;
     self.automaticallyAdjustsScrollViewInsets = NO;
+    self.view.backgroundColor = [UIColor colorWithRed:0.96 green:0.96 blue:0.96 alpha:1];
 }
 
 #pragma mark - <UINavigationControllerDelegate>

@@ -32,9 +32,8 @@
         toVC.view.frame = fromVC.isPushFromFrame;
         
         [[transitionContext containerView] addSubview:toVC.view];
-        [toVC.tableHeader addSubview:fromVC.isPushReuseView];
         
-        toVC.tableHeader.backgroundColor = [UIColor whiteColor];
+        [toVC.tableHeader insertSubview:fromVC.isPushReuseView belowSubview:toVC.tableHeader.subviews.firstObject];
 #if 1
         [toVC.tableHeader addConstraints:@[[NSLayoutConstraint constraintWithItem:fromVC.isPushReuseView
                                                                         attribute:NSLayoutAttributeBottom
@@ -69,11 +68,12 @@
         [UIView animateWithDuration:0.8
                               delay:0
              usingSpringWithDamping:0.54
-              initialSpringVelocity:0.1
+              initialSpringVelocity:0
                             options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionAllowUserInteraction
                          animations:^{
-                             fromVC.view.alpha = 0.5;
                              toVC.view.frame = finalFrameToVC;
+                             fromVC.view.alpha = 0.5;
+                             toVC.closeBtn.alpha = 1;
                          }
                          completion:^(BOOL finished) {
                              [transitionContext completeTransition:YES];
@@ -83,7 +83,7 @@
         LVTableViewController * fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
         ViewController * toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
         UIView * bgAlphaView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-        bgAlphaView.backgroundColor = [UIColor whiteColor];
+        bgAlphaView.backgroundColor = [UIColor colorWithRed:0.96 green:0.96 blue:0.96 alpha:1];
         
         [[transitionContext containerView] insertSubview:toVC.view belowSubview:[transitionContext containerView].subviews.firstObject];
         [[transitionContext containerView] insertSubview:bgAlphaView aboveSubview:toVC.view];
@@ -117,6 +117,8 @@
                              CGRect frame2 = fromVC.tableHeader.frame;
                              frame2.origin.y = 0;
                              fromVC.tableHeader.frame = frame2;
+                             
+                             fromVC.closeBtn.alpha = 0;
                              
                              fromVC.view.layer.cornerRadius = 12;
                              toVC.view.alpha = 1;

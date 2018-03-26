@@ -22,8 +22,6 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap)]];
     self.tableView.tableHeaderView = self.tableHeader;
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     
@@ -58,12 +56,6 @@
     return NO;
 }
 
-#pragma mark - Target Action
-
-- (void)tap {
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -83,8 +75,23 @@
 - (UIView *)tableHeader {
     if (!_tableHeader) {
         _tableHeader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.width * 1.2)];
+        _tableHeader.backgroundColor = [UIColor colorWithRed:0.96 green:0.96 blue:0.96 alpha:1];
+        
+        _closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _closeBtn.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 10 - 30, 10, 30, 30);
+        _closeBtn.backgroundColor = [UIColor purpleColor];
+        [_closeBtn setTitle:@"X" forState:UIControlStateNormal];
+        _closeBtn.layer.cornerRadius = 15;
+        _closeBtn.layer.masksToBounds = YES;
+        [_closeBtn addTarget:self action:@selector(closeAction) forControlEvents:UIControlEventTouchUpInside];
+        _closeBtn.alpha = 0.0f;
+        [_tableHeader addSubview:_closeBtn];
     }
     return _tableHeader;
+}
+
+- (void)closeAction {
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - <UIScrollViewDelegate>
