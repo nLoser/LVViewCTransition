@@ -29,7 +29,7 @@
     CGPoint translation = [pan translationInView:pan.view.superview];
     
     CGPoint velocity = [pan velocityInView:_toVC.view];
-    if (velocity.y <= 0) {
+    if (velocity.y <= 0 && !_isTransition) {
         return;
     }
     
@@ -39,11 +39,9 @@
     }else if (pan.state == UIGestureRecognizerStateChanged) {
         
         CGFloat progress = MIN(1.0, MAX(0.0, translation.y/10.0));
-        NSLog(@"%f",progress);
-        
+        NSLog(@"%f - %f",progress,translation.y);
         
         [self updateInteractiveTransition:progress];
-    
     }else if (pan.state == UIGestureRecognizerStateEnded ||
               pan.state == UIGestureRecognizerStateCancelled) {
         _isTransition = NO;

@@ -103,16 +103,23 @@
                               delay:0.0
                             options:UIViewAnimationOptionCurveLinear
                          animations:^{
-                             
                              toVC.isPushContainerView.frame = isPushContainerSeekFrame;
                              
-                             fromVC.view.frame = CGRectMake(toVC.isPushFromFrame.origin.x,
-                                                            toVC.isPushFromFrame.origin.y + 10,
-                                                            toVC.isPushFromFrame.size.width,
-                                                            toVC.isPushFromFrame.size.height);
+                             CGFloat scaleX = toVC.isPushFromFrame.size.width / [UIScreen mainScreen].bounds.size.width;
+                             fromVC.view.transform = CGAffineTransformMakeScale(scaleX, 1);
+                             CGRect frame = fromVC.view.frame;
+                             frame.origin = CGPointMake(toVC.isPushFromFrame.origin.x,
+                                                        toVC.isPushFromFrame.origin.y + 10);
+                             frame.size.height = toVC.isPushFromFrame.size.height;
+                             fromVC.view.frame = frame;
+                             
+                             CGFloat scaleY = toVC.isPushFromFrame.size.height / ([UIScreen mainScreen].bounds.size.width * 1.2);
+                             fromVC.tableHeader.transform = CGAffineTransformMakeScale(1, scaleY);
+                             CGRect frame2 = fromVC.tableHeader.frame;
+                             frame2.origin.y = 0;
+                             fromVC.tableHeader.frame = frame2;
                              
                              fromVC.view.layer.cornerRadius = 12;
-                             
                              toVC.view.alpha = 1;
                              bgAlphaView.alpha = 0;
                          }
