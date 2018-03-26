@@ -79,6 +79,8 @@
     [_popInteractiveTransition writeToViewController:vc];
     
     [self.navigationController pushViewController:vc animated:YES];
+    
+    NSLog(@"------------------点击");
 }
 
 #pragma mark - <UICollectionViwDataSource>

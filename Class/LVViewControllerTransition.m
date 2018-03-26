@@ -70,7 +70,7 @@
                               delay:0
              usingSpringWithDamping:0.54
               initialSpringVelocity:0.1
-                            options:UIViewAnimationOptionCurveLinear
+                            options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionAllowUserInteraction
                          animations:^{
                              fromVC.view.alpha = 0.5;
                              toVC.view.frame = finalFrameToVC;
@@ -100,7 +100,7 @@
                                                      isPushContainerOriginFrame.size.height);
         [UIView animateWithDuration:0.3
                               delay:0.0
-                            options:UIViewAnimationOptionCurveLinear
+                            options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionAllowUserInteraction
                          animations:^{
                              toVC.isPushContainerView.frame = isPushContainerSeekFrame;
                              
@@ -161,7 +161,7 @@
                                                    delay:0.0
                                   usingSpringWithDamping:0.4
                                    initialSpringVelocity:0.1
-                                                 options:UIViewAnimationOptionCurveEaseIn
+                                                 options:UIViewAnimationOptionCurveEaseIn | UIViewAnimationOptionAllowUserInteraction
                                               animations:^{
                                                   toVC.isPushContainerView.frame = isPushContainerOriginFrame;
                                               }
