@@ -32,8 +32,7 @@
         toVC.view.frame = fromVC.isPushFromFrame;
         
         [[transitionContext containerView] addSubview:toVC.view];
-        
-        [toVC.tableHeader insertSubview:fromVC.isPushReuseView belowSubview:toVC.tableHeader.subviews.firstObject];
+        [toVC.tableHeader addSubview:fromVC.isPushReuseView];
 #if 1
         [toVC.tableHeader addConstraints:@[[NSLayoutConstraint constraintWithItem:fromVC.isPushReuseView
                                                                         attribute:NSLayoutAttributeBottom
