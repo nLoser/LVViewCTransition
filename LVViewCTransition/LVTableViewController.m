@@ -44,16 +44,17 @@
     return YES;
 }
 
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRequireFailureOfGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-    return YES;
-}
-
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldBeRequiredToFailByGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-    return YES;
-}
-
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-    return YES;
+    if ([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]) {
+        CGPoint velocity = [((UIPanGestureRecognizer *)gestureRecognizer) velocityInView:self.view];
+        if (velocity.y >= 0 && self.tableView.contentOffset.y <= 0) {
+            return YES;
+        }
+    }
+    if ([otherGestureRecognizer.view isKindOfClass:[UIScrollView class]]) {
+        return YES;
+    }
+    return NO;
 }
 
 #pragma mark - Target Action
