@@ -34,7 +34,7 @@
         [[transitionContext containerView] addSubview:toVC.view];
         [toVC.tableHeader addSubview:fromVC.isPushReuseView];
         
-        toVC.tableHeader.backgroundColor = [UIColor purpleColor];
+        toVC.tableHeader.backgroundColor = [UIColor whiteColor];
 #if 1
         [toVC.tableHeader addConstraints:@[[NSLayoutConstraint constraintWithItem:fromVC.isPushReuseView
                                                                         attribute:NSLayoutAttributeBottom
@@ -92,7 +92,6 @@
         toVC.view.alpha = 0;
         
         fromVC.view.layer.cornerRadius = 1;
-        fromVC.view.layer.masksToBounds = YES;
         
         CGRect isPushContainerOriginFrame = toVC.isPushContainerView.frame;
         CGRect isPushContainerSeekFrame = CGRectMake(isPushContainerOriginFrame.origin.x,

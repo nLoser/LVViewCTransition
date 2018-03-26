@@ -42,13 +42,12 @@ static CGFloat beginY = 0;
             CGFloat progress = MIN(1.0, MAX(0.0, translation.y/65));
             CGFloat scaleX = ([UIScreen mainScreen].bounds.size.width - MIN(65, translation.y)) / [UIScreen mainScreen].bounds.size.width;
             _toVC.view.transform = CGAffineTransformMakeScale(scaleX, scaleX);
+            _toVC.view.layer.cornerRadius = 12 * progress;
             _canPop = translation.y>=65?YES:NO;
             [self updateInteractiveTransition:progress];
         }else {
             CGFloat parallaxV = MAX(0, location.y - beginY);
             CGFloat progress = MAX(1, 1 - parallaxV/65);
-            
-            NSLog(@"%f - %f",parallaxV, progress);
             _toVC.view.transform = CGAffineTransformMakeScale(progress, progress);
             _canPop = NO;
             [self updateInteractiveTransition:progress];
@@ -61,10 +60,11 @@ static CGFloat beginY = 0;
                 _toVC.view.transform = CGAffineTransformMakeScale(1, 1);
             }];
         }else {
-            [self finishInteractiveTransition];
             if (_canPop) {
+                [self finishInteractiveTransition];
                 [_toVC.navigationController popViewControllerAnimated:YES];
             }else {
+                [self cancelInteractiveTransition];
                 [UIView animateWithDuration:0.2 animations:^{
                     _toVC.view.transform = CGAffineTransformMakeScale(1, 1);
                 }];

@@ -31,6 +31,7 @@
     self.tableView.showsVerticalScrollIndicator = NO;
     self.tableView.showsHorizontalScrollIndicator = NO;
     self.automaticallyAdjustsScrollViewInsets = NO;
+    self.view.layer.masksToBounds = YES;
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
