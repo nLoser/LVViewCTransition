@@ -24,33 +24,53 @@
     [_toVC.view addGestureRecognizer:pan];
 }
 
+static CGFloat beginY = 0;
 - (void)popPan:(UIPanGestureRecognizer *)pan {
     CGPoint location = [pan locationInView:pan.view.superview];
     CGPoint translation = [pan translationInView:pan.view.superview];
     
     CGPoint velocity = [pan velocityInView:_toVC.view];
     if (velocity.y <= 0 && !_isTransition) return;
+    CGFloat originY = velocity.y;
     
     if (pan.state == UIGestureRecognizerStateBegan) {
         _isTransition = YES;
+        beginY = location.y;
     }else if (pan.state == UIGestureRecognizerStateChanged) {
-        CGFloat progress = MIN(1.0, MAX(0.0, translation.y/65.0));
         
-        CGFloat scaleX = ([UIScreen mainScreen].bounds.size.width - MIN(65, translation.y)) / [UIScreen mainScreen].bounds.size.width;
-        _toVC.view.transform = CGAffineTransformMakeScale(scaleX, scaleX);
-        
-        NSLog(@"%f - %f",progress,translation.y);
-        
-        [self updateInteractiveTransition:progress];
-    }else if (pan.state == UIGestureRecognizerStateEnded ||
-              pan.state == UIGestureRecognizerStateCancelled) {
+        if (originY > 0) {
+            CGFloat progress = MIN(1.0, MAX(0.0, translation.y/65));
+            CGFloat scaleX = ([UIScreen mainScreen].bounds.size.width - MIN(65, translation.y)) / [UIScreen mainScreen].bounds.size.width;
+            _toVC.view.transform = CGAffineTransformMakeScale(scaleX, scaleX);
+            _canPop = translation.y>=65?YES:NO;
+            [self updateInteractiveTransition:progress];
+        }else {
+            CGFloat parallaxV = MAX(0, location.y - beginY);
+            CGFloat progress = MAX(1, 1 - parallaxV/65);
+            
+            NSLog(@"%f - %f",parallaxV, progress);
+            _toVC.view.transform = CGAffineTransformMakeScale(progress, progress);
+            _canPop = NO;
+            [self updateInteractiveTransition:progress];
+        }
+    }else if (pan.state == UIGestureRecognizerStateEnded || pan.state == UIGestureRecognizerStateCancelled) {
         _isTransition = NO;
         if (pan.state == UIGestureRecognizerStateCancelled) {
             [self cancelInteractiveTransition];
+            [UIView animateWithDuration:0.2 animations:^{
+                _toVC.view.transform = CGAffineTransformMakeScale(1, 1);
+            }];
         }else {
             [self finishInteractiveTransition];
-            [_toVC.navigationController popViewControllerAnimated:YES];
+            if (_canPop) {
+                [_toVC.navigationController popViewControllerAnimated:YES];
+            }else {
+                [UIView animateWithDuration:0.2 animations:^{
+                    _toVC.view.transform = CGAffineTransformMakeScale(1, 1);
+                }];
+            }
         }
+        _canPop = NO;
     }
 }
 

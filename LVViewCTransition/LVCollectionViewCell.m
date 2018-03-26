@@ -12,10 +12,10 @@
 
 -(void)awakeFromNib {
     [super awakeFromNib];
-    self.backgroundColor = [UIColor orangeColor];
+    self.backgroundColor = [UIColor whiteColor];
     self.layer.cornerRadius = 12.0;
     self.layer.masksToBounds = YES;
-    self.WrapperView.backgroundColor = [UIColor redColor];
+    self.WrapperView.backgroundColor = [UIColor whiteColor];
 }
 
 @end
