@@ -29,9 +29,7 @@
     CGPoint translation = [pan translationInView:pan.view.superview];
     
     CGPoint velocity = [pan velocityInView:_toVC.view];
-    if (velocity.y <= 0 && !_isTransition) {
-        return;
-    }
+    if (velocity.y <= 0 && !_isTransition) return;
     
     if (pan.state == UIGestureRecognizerStateBegan) {
         _isTransition = YES;
