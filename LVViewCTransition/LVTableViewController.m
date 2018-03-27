@@ -57,6 +57,7 @@
     if ([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]) {
         CGPoint velocity = [((UIPanGestureRecognizer *)gestureRecognizer) velocityInView:self.view];
         if (velocity.y >= 0 && self.tableView.contentOffset.y <= 0) {
+            self.tableView.scrollEnabled = NO;
             return YES;
         }
     }

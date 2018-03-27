@@ -41,18 +41,24 @@ static CGFloat beginY = 0;
         if (originY > 0) {
             CGFloat progress = MIN(1.0, MAX(0.0, translation.y/65));
             CGFloat scaleX = ([UIScreen mainScreen].bounds.size.width - MIN(65, translation.y)) / [UIScreen mainScreen].bounds.size.width;
+            scaleX = MIN(1, scaleX);
             _toVC.view.transform = CGAffineTransformMakeScale(scaleX, scaleX);
             _toVC.view.layer.cornerRadius = 12 * progress;
             _canPop = translation.y>=65?YES:NO;
             [self updateInteractiveTransition:progress];
         }else {
-            CGFloat parallaxV = MAX(0, location.y - beginY);
-            CGFloat progress = MAX(1, 1 - parallaxV/65);
+            //TODO:需要处理
+            CGFloat parallaxV = MAX(0, MIN(65, MAX(location.y, beginY) - beginY));
+            CGFloat progress = 1- MAX(0, MIN(1, parallaxV/65));
+            NSLog(@"%f - %f - %f - %f",beginY,location.y,parallaxV, progress);
+            
             _toVC.view.transform = CGAffineTransformMakeScale(progress, progress);
+            _toVC.view.layer.cornerRadius = 12 * (1-progress);
             _canPop = NO;
             [self updateInteractiveTransition:progress];
         }
     }else if (pan.state == UIGestureRecognizerStateEnded || pan.state == UIGestureRecognizerStateCancelled) {
+        ((UITableViewController *)_toVC).tableView.scrollEnabled = YES;
         _isTransition = NO;
         if (pan.state == UIGestureRecognizerStateCancelled) {
             [self cancelInteractiveTransition];
