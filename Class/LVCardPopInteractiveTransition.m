@@ -47,8 +47,8 @@ static CGFloat beginY = 0;
             _canPop = translation.y>=65?YES:NO;
             [self updateInteractiveTransition:progress];
         }else {
-            CGFloat parallax = MIN(MAX(translation.y - beginY, 0), 65);
-            CGFloat progress = 1- (parallax / 65.0);
+            CGFloat parallax = MIN(MAX(location.y - beginY, 0), 65);
+            CGFloat progress = MIN(1, 1 - (parallax / 65.0) + (([UIScreen mainScreen].bounds.size.width - 65) / [UIScreen mainScreen].bounds.size.width));
             if (progress == 1) {
                 beginY = location.y;
             }
