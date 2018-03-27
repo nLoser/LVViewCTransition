@@ -48,12 +48,10 @@ static CGFloat beginY = 0;
             [self updateInteractiveTransition:progress];
         }else {
             CGFloat parallax = MIN(MAX(location.y - beginY, 0), 65);
-            CGFloat progress = MIN(1, 1 - (parallax / 65.0) + (([UIScreen mainScreen].bounds.size.width - 65) / [UIScreen mainScreen].bounds.size.width));
-            if (progress == 1) {
-                beginY = location.y;
-            }
+            CGFloat makeup = (([UIScreen mainScreen].bounds.size.width - 65) / [UIScreen mainScreen].bounds.size.width);
+            CGFloat progress = MIN(1, 1 - (parallax / 65.0) + makeup);
             _toVC.view.transform = CGAffineTransformMakeScale(progress, progress);
-            _toVC.view.layer.cornerRadius = 12 * progress;
+//            _toVC.view.layer.cornerRadius =  1;
             _canPop = NO;
             [self updateInteractiveTransition:progress];
         }
