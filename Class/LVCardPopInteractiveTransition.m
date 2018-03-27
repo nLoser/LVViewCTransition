@@ -47,13 +47,13 @@ static CGFloat beginY = 0;
             _canPop = translation.y>=65?YES:NO;
             [self updateInteractiveTransition:progress];
         }else {
-            //TODO:需要处理
-            CGFloat parallaxV = MAX(0, MIN(65, MAX(location.y, beginY) - beginY));
-            CGFloat progress = 1- MAX(0, MIN(1, parallaxV/65));
-            NSLog(@"%f - %f - %f - %f",beginY,location.y,parallaxV, progress);
-            
+            CGFloat parallax = MIN(MAX(translation.y - beginY, 0), 65);
+            CGFloat progress = 1- (parallax / 65.0);
+            if (progress == 1) {
+                beginY = location.y;
+            }
             _toVC.view.transform = CGAffineTransformMakeScale(progress, progress);
-            _toVC.view.layer.cornerRadius = 12 * (1-progress);
+            _toVC.view.layer.cornerRadius = 12 * progress;
             _canPop = NO;
             [self updateInteractiveTransition:progress];
         }
