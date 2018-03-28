@@ -24,37 +24,33 @@
     [_toVC.view addGestureRecognizer:pan];
 }
 
-static CGFloat beginY = 0;
+static CGFloat sSlideDistance = 65.f;
+static CGFloat sbeginY = 0;
+static CGFloat sScale = 1;
+
 - (void)popPan:(UIPanGestureRecognizer *)pan {
+    CGPoint velocity = [pan velocityInView:_toVC.view];
+    if (velocity.y <= 0 && !_isTransition) return;
+    
+    CGFloat originY = velocity.y;
     CGPoint location = [pan locationInView:pan.view.superview];
     CGPoint translation = [pan translationInView:pan.view.superview];
     
-    CGPoint velocity = [pan velocityInView:_toVC.view];
-    if (velocity.y <= 0 && !_isTransition) return;
-    CGFloat originY = velocity.y;
-    
     if (pan.state == UIGestureRecognizerStateBegan) {
         _isTransition = YES;
-        beginY = location.y;
+        sbeginY = location.y;
+        sScale = (([UIScreen mainScreen].bounds.size.width - sSlideDistance) / [UIScreen mainScreen].bounds.size.width);
     }else if (pan.state == UIGestureRecognizerStateChanged) {
-        
+        CGFloat progress = 1 - 0.2 * (MIN(65, MAX(location.y - sbeginY, 0))/65.0);
         if (originY > 0) {
-            CGFloat progress = MIN(1.0, MAX(0.0, translation.y/65));
-            CGFloat scaleX = ([UIScreen mainScreen].bounds.size.width - MIN(65, translation.y)) / [UIScreen mainScreen].bounds.size.width;
-            scaleX = MIN(1, scaleX);
-            _toVC.view.transform = CGAffineTransformMakeScale(scaleX, scaleX);
-            _toVC.view.layer.cornerRadius = 12 * progress;
             _canPop = translation.y>=65?YES:NO;
-            [self updateInteractiveTransition:progress];
         }else {
-            CGFloat parallax = MIN(MAX(location.y - beginY, 0), 65);
-            CGFloat makeup = (([UIScreen mainScreen].bounds.size.width - 65) / [UIScreen mainScreen].bounds.size.width);
-            CGFloat progress = MIN(1, 1 - (parallax / 65.0) + makeup);
-            _toVC.view.transform = CGAffineTransformMakeScale(progress, progress);
-//            _toVC.view.layer.cornerRadius =  1;
             _canPop = NO;
-            [self updateInteractiveTransition:progress];
         }
+        CGFloat radius = 12 * progress;
+        _toVC.view.layer.cornerRadius = radius;
+        _toVC.view.transform = CGAffineTransformMakeScale(progress, progress);
+        [self updateInteractiveTransition:progress];
     }else if (pan.state == UIGestureRecognizerStateEnded || pan.state == UIGestureRecognizerStateCancelled) {
         ((UITableViewController *)_toVC).tableView.scrollEnabled = YES;
         _isTransition = NO;
