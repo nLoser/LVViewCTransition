@@ -53,7 +53,6 @@ static CGFloat sScale = 1;
         [self updateInteractiveTransition:progress];
         if (_canPop) {
             pan.enabled = NO;
-            NSLog(@"滑动");
         }
     }else if (pan.state == UIGestureRecognizerStateEnded || pan.state == UIGestureRecognizerStateCancelled) {
         ((UITableViewController *)_toVC).tableView.scrollEnabled = YES;
