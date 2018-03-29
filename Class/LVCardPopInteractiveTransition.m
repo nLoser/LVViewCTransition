@@ -41,35 +41,33 @@ static CGFloat sScale = 1;
         sbeginY = location.y;
         sScale = (([UIScreen mainScreen].bounds.size.width - sSlideDistance) / [UIScreen mainScreen].bounds.size.width);
     }else if (pan.state == UIGestureRecognizerStateChanged) {
-        CGFloat progress = 1 - 0.2 * (MIN(65, MAX(location.y - sbeginY, 0))/65.0);
+        CGFloat progress = 1 - 0.2 * (MIN(sSlideDistance, MAX(location.y - sbeginY, 0))/sSlideDistance);
         if (originY > 0) {
-            _canPop = translation.y>=65?YES:NO;
+            _canPop = translation.y>=sSlideDistance?YES:NO;
         }else {
             _canPop = NO;
         }
-        CGFloat radius = 12 * progress;
+        CGFloat radius = 12 * (((1-progress)/(1-sScale)));
         _toVC.view.layer.cornerRadius = radius;
         _toVC.view.transform = CGAffineTransformMakeScale(progress, progress);
         [self updateInteractiveTransition:progress];
+        if (_canPop) {
+            pan.enabled = NO;
+            NSLog(@"滑动");
+        }
     }else if (pan.state == UIGestureRecognizerStateEnded || pan.state == UIGestureRecognizerStateCancelled) {
         ((UITableViewController *)_toVC).tableView.scrollEnabled = YES;
         _isTransition = NO;
-        if (pan.state == UIGestureRecognizerStateCancelled) {
+        if (_canPop) {
+            [self finishInteractiveTransition];
+            [_toVC.navigationController popViewControllerAnimated:YES];
+        }else {
             [self cancelInteractiveTransition];
             [UIView animateWithDuration:0.2 animations:^{
                 _toVC.view.transform = CGAffineTransformMakeScale(1, 1);
             }];
-        }else {
-            if (_canPop) {
-                [self finishInteractiveTransition];
-                [_toVC.navigationController popViewControllerAnimated:YES];
-            }else {
-                [self cancelInteractiveTransition];
-                [UIView animateWithDuration:0.2 animations:^{
-                    _toVC.view.transform = CGAffineTransformMakeScale(1, 1);
-                }];
-            }
         }
+        _toVC.view.userInteractionEnabled = YES;
         _canPop = NO;
     }
 }
