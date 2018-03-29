@@ -27,6 +27,8 @@
 static CGFloat sSlideDistance = 65.f;
 static CGFloat sbeginY = 0;
 static CGFloat sScale = 1;
+static BOOL sCanPop = NO;
+static CFTimeInterval sTime = 0;
 
 - (void)popPan:(UIPanGestureRecognizer *)pan {
     CGPoint velocity = [pan velocityInView:_toVC.view];
@@ -52,7 +54,16 @@ static CGFloat sScale = 1;
         _toVC.view.transform = CGAffineTransformMakeScale(progress, progress);
         [self updateInteractiveTransition:progress];
         if (_canPop) {
-            pan.enabled = NO;
+            if (!sCanPop) {
+                sCanPop = YES;
+                sTime = CACurrentMediaTime();
+            }else {
+                if (CACurrentMediaTime() - sTime >= 0.2) {
+                    pan.enabled = NO;
+                }
+            }
+        }else {
+            sCanPop = NO;
         }
     }else if (pan.state == UIGestureRecognizerStateEnded || pan.state == UIGestureRecognizerStateCancelled) {
         ((UITableViewController *)_toVC).tableView.scrollEnabled = YES;
