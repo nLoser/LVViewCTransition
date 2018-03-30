@@ -16,6 +16,7 @@
     NSMutableArray * _dataArray;
     CGFloat _w;
     CGFloat _h;
+    __weak LVCollectionViewCell * _highlightCell;
 }
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) LVViewControllerTransition * transition;
@@ -70,7 +71,30 @@
 
 #pragma mark - <UICollectionViewDelegate>
 
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
+     _highlightCell = (id)[collectionView cellForItemAtIndexPath:indexPath];
+    [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        _highlightCell.transform = CGAffineTransformMakeScale(0.95, 0.95);
+    } completion:nil];
+    return YES;
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (_highlightCell) {
+        [UIView animateWithDuration:0.2 animations:^{
+            _highlightCell.transform = CGAffineTransformMakeScale(1, 1);
+        }];
+        _highlightCell = nil;
+    }
+}
+
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (_highlightCell) {
+        [UIView animateWithDuration:0.2 animations:^{
+            _highlightCell.transform = CGAffineTransformMakeScale(1, 1);
+        }];
+        _highlightCell = nil;
+    }
     LVTableViewController * vc = [LVTableViewController new];
     LVCollectionViewCell * cell = (id)[collectionView cellForItemAtIndexPath:indexPath];
     
