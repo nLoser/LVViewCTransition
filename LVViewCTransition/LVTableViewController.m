@@ -42,6 +42,19 @@
     [self.view addSubview:_closeBtn];
 }
 
+#pragma mark - Override
+
+- (BOOL)prefersStatusBarHidden {
+    UIApplication * app = [UIApplication sharedApplication];
+    return !app.isStatusBarHidden;
+}
+
+- (UIStatusBarAnimation)preferredStatusBarUpdateAnimation {
+    return UIStatusBarAnimationSlide;
+}
+
+#pragma mark - <UIGestureRecognizerDelegate>
+
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
     if ([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]) {
         CGPoint velocity = [((UIPanGestureRecognizer *)gestureRecognizer) velocityInView:self.view];

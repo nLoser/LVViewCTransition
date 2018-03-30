@@ -81,9 +81,9 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if (_highlightCell) {
-        [UIView animateWithDuration:0.2 animations:^{
+        [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
             _highlightCell.transform = CGAffineTransformMakeScale(1, 1);
-        }];
+        }completion:nil];
         _highlightCell = nil;
     }
 }

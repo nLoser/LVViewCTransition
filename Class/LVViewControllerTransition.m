@@ -168,8 +168,9 @@
                                               }
                                               completion:nil];
                          }];
-        
-        
+        [UIView animateWithDuration:0.2 animations:^{
+            [fromVC setNeedsStatusBarAppearanceUpdate];
+        }];
     }
 }
 
