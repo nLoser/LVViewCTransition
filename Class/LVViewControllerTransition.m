@@ -7,7 +7,7 @@
 //
 
 #import "LVViewControllerTransition.h"
-#import <UIKit/UIScreen.h>
+#import <UIKit/UIKit.h>
 
 #import "ViewController.h"
 #import "LVTableViewController.h"

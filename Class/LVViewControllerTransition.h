@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIViewControllerTransitioning.h>
+#import <UIKit/UIKit.h>
 
 @interface LVViewControllerTransition : NSObject<UIViewControllerAnimatedTransitioning>
 @property (nonatomic, assign) BOOL isPush;
